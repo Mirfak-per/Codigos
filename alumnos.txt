@@ -1,0 +1,2 @@
+Nombre,Notajuan,50
+gabriel,60

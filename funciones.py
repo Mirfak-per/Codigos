@@ -1,29 +1,49 @@
-#Funciones
+def registrar_trabajador():
+    #Nombre y Apellido, Cargo, Sueldo bruto. 
+    #Una vez ingresado los datos, se deben calcular,
+    Diccionario={}
+    lista = []
+    Nombre = input("Ingrese el nombre y apellido del trabajador ")
+    Cargo = input("Ingrese el cargo del trabajador ")
+    while True:
+        try:
+            Sueldo = int(input("Ingrese el sueldo bruto del trabajador "))
+            break
+        except:
+            print("Error, Intente otra vez")
+    Diccionario={
+                "Nombre": Nombre,
+                "Cargo": Cargo,
+                "Sueldo": Sueldo,
+                }
+    lista.append(Diccionario)
+    return lista[:]
 
-car1= "A"
-car2="!"
-car3=" "
-txt1="Aa Bb Cc 0 cC bB aA"
-txt2="EstoyconociendoPython"
-txt3 = "ssdadsad"
-txt4 = "ASDFFSADSF"
-num1= "3"
 
-print(car1.isalpha())
-print(car2.isalpha())
-print(car3.isalpha())
-print(txt1.isalpha())
-print(txt2.isalpha())
-print(txt3.isalpha())
-print(txt4.s())
-print(num1.isalpha())
-#isnumeric revisa si el texto es un numero
-#isalpha revisa si el texto es una letra del alfabeto
-#isalnum revisa si tiene un texto Alfanumérico, cuando tenemos numero y letras juntos
-#isspace revisa si es un espacio
-#upper cambia el texto a mayusculas
-#lower cambia el texto a minusculas
-#capitalize cambia la pirmera letra del texto a mayusculas, dejando el resto en minusculas
-#isdigit revisa si es un digito
-#islower revisa si todo el texto es minusculas
-#isupper revisa si todo el texto es mayusculas
+def tabla_de_trabajadores(lista):
+    #los valores de acuerdo con la siguiente tabla
+    # Trabajador Cargo   Sueldo Bruto   Desc. Salud   Desc. AFP Líquido a pagar
+    # Homero      CEO       1000000         70000       120000         810000
+    # Simpson
+    print(f"""
+                 Trabajador       Cargo         Sueldo Bruto        Desc. Salud         Desc. AFP         Líquido a pagar""")
+    for i in range (len(lista)):
+        print({lista[i]["Nombre"]},    {lista[i]["Cargo"]},    {lista[i]["Sueldo"]},    {lista[i]["Sueldo"]*0.12},      {lista[i]["Sueldo"]*0.07},     {lista[i]["Sueldo"]-((lista[i]["Sueldo"]*0.07)+(lista[i]["Sueldo"]*0.12))}) 
+
+
+def imprimir_sueldos(lista):
+    import csv
+    with open("empresa.csv","w",newline="") as sueldo_csv:
+        escribir_fila=csv.writer(sueldo_csv)
+        escribir_fila.writerows("Trabajador","Cargo","Sueldo Bruto","Desc. Salud","Desc. AFP","Líquido a pagar")
+        escribir_fila.writerow(lista)
+
+def menu():
+    print("""
+    1. Registrar trabajador
+    2. Listar los todos los trabajadores
+    3. Imprimir planilla de sueldos
+    4. Salir del Programa
+    """)
+    opc = int(input())
+    return opc
